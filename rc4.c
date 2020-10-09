@@ -45,8 +45,11 @@ unsigned char randInt(rc4_cipher_t* cipher){
     return cipher->S[(cipher->S[i] + cipher->S[j]) & 255];
 }
 
-int rc4_encode(rc4_cipher_t* cipher, unsigned char string[]){
+int rc4_decode(rc4_cipher_t* cipher, unsigned char string[]){
+	return rc4_encode(cipher, string);
+}
 
+int rc4_encode(rc4_cipher_t* cipher, unsigned char string[]){
 	if (cipher == NULL || string == NULL) return -1;
 
 	unsigned int len = (unsigned int)strlen((char*)string);

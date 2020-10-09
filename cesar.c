@@ -8,13 +8,10 @@ int cesar_cipher_init(cesar_cipher_t* cipher, unsigned int key){
 	return 0;
 }
 
-int cesar_encode(cesar_cipher_t* cipher, unsigned char string[]){
-
+int cesar_shift_bytes(int shift, unsigned char string[]){
     // No aceptamos cadenas vacías ni NULLs.
-    if (cipher == NULL || string == NULL) return -1;
 	unsigned int n = (unsigned int)strlen((char*)string);
 
-	unsigned int shift = cipher->shift;
     for (int i = 0; i < n; i++){
         unsigned int caracter = string[i];
         if (caracter <= 256){
@@ -25,3 +22,12 @@ int cesar_encode(cesar_cipher_t* cipher, unsigned char string[]){
     return 0;
 }
 
+int cesar_encode(cesar_cipher_t* cipher, unsigned char string[]){
+    if (cipher == NULL || string == NULL) return -1;
+	return cesar_shift_bytes(((int)cipher->shift),string);
+}
+
+int cesar_decode(cesar_cipher_t* cipher, unsigned char string[]){
+    if (cipher == NULL || string == NULL) return -1;
+	return cesar_shift_bytes(-1*((int)cipher->shift),string);
+}
