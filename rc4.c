@@ -46,6 +46,7 @@ unsigned char randInt(rc4_cipher_t* cipher){
 }
 
 int rc4_decode(rc4_cipher_t* cipher, unsigned char string[]){
+	// Es necesario reiniciar el cipher para desencriptar.
 	return rc4_encode(cipher, string);
 }
 
