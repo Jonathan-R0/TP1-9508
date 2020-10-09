@@ -2,8 +2,8 @@
 #define VIGENERE_H_
 
 typedef struct vigenere_cipher{
-	unsigned int len;
-	unsigned char* key;
+    unsigned int len;
+    unsigned char* key;
 }vigenere_cipher_t;
 
 int vigenere_cipher_init(vigenere_cipher_t* cipher, unsigned char* key);
