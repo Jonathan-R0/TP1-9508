@@ -10,7 +10,6 @@ void swap(unsigned char *s, unsigned int coef1, unsigned int coef2){
 }
 
 int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key){
-
 	if (cipher == NULL || key == NULL) return -1;
 	cipher->key = key;
 	cipher->a = cipher->b = 0;
@@ -28,7 +27,6 @@ int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key){
 }
 
 unsigned char randInt(rc4_cipher_t* cipher){
-
 	if (cipher == NULL) return -1;
    
 	unsigned int i = cipher->a; // Con estas variables evitamos
@@ -45,15 +43,14 @@ unsigned char randInt(rc4_cipher_t* cipher){
     return cipher->S[(cipher->S[i] + cipher->S[j]) & 255];
 }
 
-int rc4_decode(rc4_cipher_t* cipher, unsigned char string[]){
+int rc4_encode(rc4_cipher_t* cipher, unsigned char string[]){
 	// Es necesario reiniciar el cipher para desencriptar.
-	return rc4_encode(cipher, string);
+	if (cipher == NULL || string == NULL) return -1;
+	return rc4_decode(cipher, string, (unsigned int)strlen((char*)string));
 }
 
-int rc4_encode(rc4_cipher_t* cipher, unsigned char string[]){
+int rc4_decode(rc4_cipher_t* cipher, unsigned char string[], unsigned int len){
 	if (cipher == NULL || string == NULL) return -1;
-
-	unsigned int len = (unsigned int)strlen((char*)string);
 	
 	for (int k = 0; k < len; k++){
 		string[k] ^= randInt(cipher);

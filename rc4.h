@@ -16,6 +16,6 @@ int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key);
 
 int rc4_encode(rc4_cipher_t* cipher, unsigned char string[]);
 
-int rc4_decode(rc4_cipher_t* cipher, unsigned char string[]);
+int rc4_decode(rc4_cipher_t* cipher, unsigned char string[], unsigned int len);
 
 #endif
