@@ -4,7 +4,8 @@
 #include "rc4.h"
 
 void swap(unsigned char *s, unsigned int coef1, unsigned int coef2){
-    unsigned char temp = s[coef1];
+    if (s == NULL) return;
+	unsigned char temp = s[coef1];
     s[coef1] = s[coef2];
     s[coef2] = temp;
 }
