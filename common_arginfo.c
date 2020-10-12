@@ -3,29 +3,26 @@
 #include <getopt.h>
 #include "common_arginfo.h"
 
-#define SIZE_OF_STRINGS 256
 #define ERR_OVERFLOW "Error, el método de encriptación y/o llave son demasiado largos.\n"
 #define ERR_INV_TYPE "Error, opcion pasada por argumento no válida.\n"
 #define METODO_DE_ENCRIPTACION "method="
 #define LLAVE_DE_ENCRIPTACION "key="
 
-void getPortAndIp(arginfo_t* info, int argc, char* argv[]){
-	if (argc == 4){
-		strncpy(info->port,argv[3],sizeof(argv[3]));
+void getPortAndIp(arginfo_t* info, int argc, char* argv[]){	
+	if (info == NULL || argv == NULL){
+		return;
+	} else if (argc == 4){
+		strncpy(info->port,argv[3],strlen(argv[3])+1);	
 		*(info->ip) = '\0';
-	} else {
-		strncpy(info->port,argv[4],sizeof(argv[4]));
-		strncpy(info->ip,argv[3],sizeof(argv[3]));
+	} else if (argc == 5) {
+		strncpy(info->ip,argv[3],strlen(argv[3])+1);
+		strncpy(info->port,argv[4],strlen(argv[4])+1);
 	}
 }
 
-int arginfo_init(arginfo_t* info, int argc, char* argv[]){
-
-    int opt; int hayLlave = 0; int hayMetodo = 0;
-    const struct option validArgs[] =
-        {{.name = METODO_DE_ENCRIPTACION, .has_arg = required_argument, .val = 'm'},
-         {.name = LLAVE_DE_ENCRIPTACION, .has_arg = required_argument, .val = 'k'},{}};
-
+int getMethodAndKey(arginfo_t* info, const struct option validArgs[], int argc, char* argv[]){
+    
+	int opt; int hayLlave = 0; int hayMetodo = 0;
     while ((opt = getopt_long(argc, argv, "mk", validArgs, NULL)) != -1){
         if (sizeof(optarg) >= SIZE_OF_STRINGS){
             fprintf(stderr,ERR_OVERFLOW);
@@ -33,20 +30,27 @@ int arginfo_init(arginfo_t* info, int argc, char* argv[]){
         }
         switch (opt){
             case('m'):
-                strncpy(info->method,optarg,sizeof(optarg));
-                hayMetodo++;
-                continue;
+                strncpy(info->method,optarg,strlen(optarg)+1);
+                hayMetodo++; continue;
             case('k'):
-                strncpy(info->key,optarg,sizeof(optarg));
-                hayLlave++;
-                continue;
+                strncpy(info->key,optarg,strlen(optarg)+1);
+                hayLlave++; continue;
             default:
                 fprintf(stderr,ERR_INV_TYPE);
                 return 0;
         }
-    }
+	} // Esperamos que tenga llave y método.   
+	return (hayLlave && hayMetodo);
+}
 
+int arginfo_init(arginfo_t* info, int argc, char* argv[]){
+
+    const struct option validArgs[] =
+        {{.name = METODO_DE_ENCRIPTACION, .has_arg = required_argument, .val = 'm'},
+         {.name = LLAVE_DE_ENCRIPTACION, .has_arg = required_argument, .val = 'k'},{}};
+
+	int validez = getMethodAndKey(info,validArgs,argc,argv);
 	getPortAndIp(info,argc,argv);	
-	// Esperamos que tenga llave y método.
-    return (hayLlave && hayMetodo);
+
+	return (validez);
 }
