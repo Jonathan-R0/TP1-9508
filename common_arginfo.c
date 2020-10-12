@@ -1,14 +1,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <getopt.h>
-#include "arginfo.h"
+#include "common_arginfo.h"
 
 #define SIZE_OF_STRINGS 256
 #define ERR_OVERFLOW "Error, el método de encriptación y/o llave son demasiado largos.\n"
 #define ERR_INV_TYPE "Error, opcion pasada por argumento no válida.\n"
 #define METODO_DE_ENCRIPTACION "method="
 #define LLAVE_DE_ENCRIPTACION "key="
-
 
 int arginfo_init(arginfo_t* info, int argc, char* argv[]){
 

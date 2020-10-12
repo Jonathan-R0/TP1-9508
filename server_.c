@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "arginfo.h"
+#include "common_arginfo.h"
 
 #define ERR_ARG_NRO "Error, argumento inválido.\n"
 

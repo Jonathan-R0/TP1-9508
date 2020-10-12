@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <stdio.h>
-#include "rc4.h"
+#include "common_rc4.h"
 
 void swap(unsigned char *s, unsigned int coef1, unsigned int coef2){
     if (s == NULL) return;
@@ -27,7 +27,7 @@ int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key){
 	return 0;
 }
 
-unsigned char randInt(rc4_cipher_t* cipher){
+unsigned char randChar(rc4_cipher_t* cipher){
 	if (cipher == NULL) return -1;
    
 	unsigned int i = cipher->a; // Con estas variables evitamos
@@ -54,7 +54,7 @@ int rc4_decode(rc4_cipher_t* cipher, unsigned char string[], unsigned int len){
 	if (cipher == NULL || string == NULL) return -1;
 	
 	for (int k = 0; k < len; k++){
-		string[k] ^= randInt(cipher);
+		string[k] ^= randChar(cipher);
 	}
 	
 	return 0;

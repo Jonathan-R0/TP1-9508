@@ -1,6 +1,6 @@
 #include <string.h>
 #include <stddef.h>
-#include "cesar.h"
+#include "common_cesar.h"
 
 int cesar_cipher_init(cesar_cipher_t* cipher, unsigned int key){
 	if (cipher == NULL) return -1;	
@@ -18,7 +18,6 @@ int cesar_shift_bytes(int shift, unsigned char string[], unsigned int msgLen){
             string[i] = (caracter + shift) % 256;
         }
     }
-
     return 0;
 }
 
