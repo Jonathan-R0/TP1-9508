@@ -12,4 +12,6 @@ typedef struct arginfo{
 
 int arginfo_init(arginfo_t* info, int argc, char* argv[]);
 
+void getPortAndIp(arginfo_t* info, int argc, char* argv[]);
+
 #endif

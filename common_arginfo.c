@@ -9,10 +9,19 @@
 #define METODO_DE_ENCRIPTACION "method="
 #define LLAVE_DE_ENCRIPTACION "key="
 
+void getPortAndIp(arginfo_t* info, int argc, char* argv[]){
+	if (argc == 4){
+		strncpy(info->port,argv[3],sizeof(argv[3]));
+		*(info->ip) = '\0';
+	} else {
+		strncpy(info->port,argv[4],sizeof(argv[4]));
+		strncpy(info->ip,argv[3],sizeof(argv[3]));
+	}
+}
+
 int arginfo_init(arginfo_t* info, int argc, char* argv[]){
 
-    int opt;
-    int hayLlave = 0; int hayMetodo = 0;
+    int opt; int hayLlave = 0; int hayMetodo = 0;
     const struct option validArgs[] =
         {{.name = METODO_DE_ENCRIPTACION, .has_arg = required_argument, .val = 'm'},
          {.name = LLAVE_DE_ENCRIPTACION, .has_arg = required_argument, .val = 'k'},{}};
@@ -37,6 +46,7 @@ int arginfo_init(arginfo_t* info, int argc, char* argv[]){
         }
     }
 
+	getPortAndIp(info,argc,argv);	
 	// Esperamos que tenga llave y método.
     return (hayLlave && hayMetodo);
 }

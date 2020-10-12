@@ -12,7 +12,7 @@ int main(int argc, char *argv[]){
 
     arginfo_t arginfo;
 	if (!arginfo_init(&arginfo,argc,argv)) return 1;
-	printf("Bien papá\nmethod: %s\nkey: %s\n",arginfo.method,arginfo.key);
+	printf("Funciona con:\nmethod: %s\nkey: %s\nport: %s\nip: %s\n",arginfo.method,arginfo.key,arginfo.port,arginfo.ip);
 	return 0;
 
 }
