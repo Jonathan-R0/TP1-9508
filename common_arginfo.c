@@ -56,9 +56,14 @@ int getMethodAndKey(arginfo_t* info, const struct option validArgs[], int argc, 
 
 int arginfo_init(arginfo_t* info, int argc, char* argv[]){
 
-    const struct option validArgs[] =
-        {{.name = METODO_DE_ENCRIPTACION, .has_arg = required_argument, .val = 'm'},
-         {.name = LLAVE_DE_ENCRIPTACION, .has_arg = required_argument, .val = 'k'},{}};
+    struct option validArgs[3]; 
+    const struct option method =
+	{.name = METODO_DE_ENCRIPTACION,.has_arg = required_argument,.val = 'm'};
+    const struct option key =
+    {.name = LLAVE_DE_ENCRIPTACION,.has_arg = required_argument,.val = 'k'};
+    const struct option final =
+    {.name = 0,.has_arg = 0,.val = 0};
+	validArgs[0] = method; validArgs[1] = key; validArgs[2] = final; 
 
 	int validez = getMethodAndKey(info,validArgs,argc,argv);
 	getPortAndIp(info,argc,argv);	

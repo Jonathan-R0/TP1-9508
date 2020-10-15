@@ -28,8 +28,8 @@ int main(int argc, char *argv[]){
 	char msg[] = "Hello client";
 	socket_send(&client, msg, 12);
 /*****************************************************************/
-	char buf[12];
-	int bytes = socket_recv(&client,buf,12);
+	char buf[13];
+	socket_recv(&client,buf,12);
 	buf[12] = 0;
 	printf("Recibí: %s\n",buf);
 /*****************************************************************/

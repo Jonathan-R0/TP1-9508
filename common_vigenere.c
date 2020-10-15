@@ -16,7 +16,7 @@ int vigenere_shift_bytes(vigenere_cipher_t* cipher, short estoyCifrando,
 			              + estoyCifrando * cipher->key[j % keyLen];
 		buf[i] = suma % 256; j++;
 	}
-	strcpy(string,buf); // No es insegura ya que tienen el mismo largo
+	strcpy((char*)string,(char*)buf); // No es insegura ya que tienen el mismo largo
 	cipher->lastKeyIndex += j;
 	free(buf);
 	return 0;
@@ -38,4 +38,5 @@ int vigenere_cipher_init(vigenere_cipher_t* cipher, unsigned char* key){
 	if (cipher == NULL || key == NULL) return -1;	
 	cipher->key = key;
 	cipher->lastKeyIndex = 0;
+	return 0;
 }

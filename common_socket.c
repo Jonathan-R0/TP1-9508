@@ -1,4 +1,4 @@
-#define _POSIX_C_SOURCE 201112L 
+#define _POSIX_C_SOURCE 201112L
 #include <arpa/inet.h>
 #include "common_socket.h"
 #include <netdb.h>
@@ -65,9 +65,8 @@ int socket_connect(socket_t* self, const char* port, const char* ip){
 	struct addrinfo *address_list;
 	if ((address_list = get_addr_info(self,port,ip)) == NULL) return -1;
 
-	int extra_fd = -1; // Por ahora inválido.
 	for (struct addrinfo* conex = address_list; conex != NULL; conex = conex->ai_next){
-		extra_fd = socket(conex->ai_family, conex->ai_socktype, conex->ai_protocol); 
+		int extra_fd = socket(conex->ai_family, conex->ai_socktype, conex->ai_protocol); 
 		if (extra_fd == -1) {
 			continue;
 		} else if (connect(extra_fd, conex->ai_addr, conex->ai_addrlen) == -1) {
@@ -85,14 +84,13 @@ int socket_connect(socket_t* self, const char* port, const char* ip){
 
 // SERVER ONLY
 int socket_bind(socket_t* self, char* port){
-	if (socket == NULL || port == NULL) return -1;
+	if (self == NULL || port == NULL) return -1;
 	struct addrinfo *address_list;
 	if ((address_list = get_addr_info(self,port,NULL))== NULL) return -1;
 
 	int val = 1;	
-    int extra_fd = -1; // Por ahora inválido.
     for (struct addrinfo* conex = address_list; conex != NULL; conex = conex->ai_next){
-        extra_fd = socket(conex->ai_family, conex->ai_socktype, conex->ai_protocol);
+        int extra_fd = socket(conex->ai_family, conex->ai_socktype, conex->ai_protocol);
 		setsockopt(extra_fd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
         if (extra_fd == -1) {
             continue;
@@ -120,12 +118,12 @@ int socket_listen(socket_t* socket){
 }
 
 int socket_send(socket_t* socket, char* msg, size_t len){
-	if (socket == NULL || msg == NULL || len < 0) return -1;
+	if (socket == NULL || msg == NULL) return -1;
 	unsigned int already_sent = 0;
 	unsigned int remaining = len;
-	size_t just_sent = 0;
 	while (already_sent < len){
-		printf("Estoy mandando: %d bytes\n",remaining);
+		int just_sent = 0;
+		printf("Estoy mandando: %d bytes\n",(int)remaining);
 		if ((just_sent = send(socket->fd,&msg[already_sent],remaining,MSG_NOSIGNAL)) == -1)
 			return -1;
 		else if (just_sent == 0)
@@ -137,12 +135,12 @@ int socket_send(socket_t* socket, char* msg, size_t len){
 }
 
 int socket_recv(socket_t* socket, char* buf, size_t len){
-	if (socket == NULL || buf == NULL || len < 0) return -1;
+	if (socket == NULL || buf == NULL) return -1;
 	unsigned int already_read = 0;
 	unsigned int remaining = len;
-	size_t just_read = 0;
 	while (already_read < len){
-		printf("Estoy recibiendo: %d bytes\n",remaining);
+		int just_read = 0;
+		printf("Estoy recibiendo: %d bytes\n",(int)remaining);
 		if ((just_read = recv(socket->fd,&buf[already_read],remaining,MSG_NOSIGNAL)) == -1) {
 			return -1;
 		} else if (just_read == 0) {

@@ -11,10 +11,9 @@
 static void do_stuff_with_stdin(arginfo_t* info){
 	
 	char buf[BYTES_A_LEER];
-	size_t leidos;
 	size_t porLeer = BYTES_A_LEER;
 	while(!feof(stdin)){
-		leidos = fread(buf,1,porLeer,stdin); 
+		size_t leidos = fread(buf,1,porLeer,stdin); 
 		buf[leidos] = '\0';
 //		printf("%s - %ld\n",buf,leidos);
 	}
@@ -37,8 +36,8 @@ int main(int argc, char *argv[]){
 	socket_connect(&self,arginfo.port,arginfo.ip);
 
 /*****************************************************************/
-	char buf[12];
-	int bytes = socket_recv(&self,buf,12);
+	char buf[13];
+	socket_recv(&self,buf,12);
 	buf[12] = 0;
 	printf("Recibí: %s\n",buf);
 /*****************************************************************/
