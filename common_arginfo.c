@@ -8,7 +8,17 @@
 #define METODO_DE_ENCRIPTACION "method="
 #define LLAVE_DE_ENCRIPTACION "key="
 
-void getPortAndIp(arginfo_t* info, int argc, char* argv[]){	
+static int metodoEsValido(char* metodo){
+	if (strcmp(metodo,"rc4") == 0 ||
+		strcmp(metodo,"cesar") == 0 ||
+		strcmp(metodo,"vigenere") == 0){
+		return 1;
+	}
+	return 0;
+}
+
+void getPortAndIp(arginfo_t* info, int argc, char* argv[]){
+	
 	if (info == NULL || argv == NULL){
 		return;
 	} else if (argc == 4){
@@ -39,8 +49,9 @@ int getMethodAndKey(arginfo_t* info, const struct option validArgs[], int argc, 
                 fprintf(stderr,ERR_INV_TYPE);
                 return 0;
         }
-	} // Esperamos que tenga llave y método.   
-	return (hayLlave && hayMetodo);
+	}
+	if (!metodoEsValido(info->method)) return 0;
+	return (hayLlave && hayMetodo); // Esperamos que tenga llave y método.   
 }
 
 int arginfo_init(arginfo_t* info, int argc, char* argv[]){
