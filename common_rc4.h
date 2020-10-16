@@ -1,5 +1,6 @@
-#ifndef RC4_H_
-#define RC4_H_
+// Copyright [2020]<Jonathan David Rosenblatt>
+#ifndef COMMON_RC4_H_
+#define COMMON_RC4_H_
 
 /*
  * Las variables 'S', 'a' y 'b' existen para que el struct pueda generar el
@@ -53,4 +54,4 @@ int rc4_encode(rc4_cipher_t* cipher, unsigned char string[]);
  */
 int rc4_decode(rc4_cipher_t* cipher, unsigned char string[], unsigned int len);
 
-#endif
+#endif  // COMMON_RC4_H_

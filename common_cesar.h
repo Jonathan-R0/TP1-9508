@@ -1,5 +1,6 @@
-#ifndef CESAR_H_
-#define CESAR_H_
+// Copyright [2020]<Jonathan David Rosenblatt>
+#ifndef COMMON_CESAR_H_
+#define COMMON_CESAR_H_
 
 typedef struct cesar_cipher {
   unsigned int shift;
@@ -20,7 +21,7 @@ int cesar_cipher_init(cesar_cipher_t* cipher, unsigned int key);
  * != NULL. Postcondiciones: deja el mensaje cifrado en el mismo array que
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
-int cesar_encode(cesar_cipher_t* cipher, unsigned char string[]);
+int cesar_encode(cesar_cipher_t* cipher, unsigned char msg[]);
 
 /*
  * Dado un mensaje se decodifica en función del decremento de caracteres
@@ -28,7 +29,7 @@ int cesar_encode(cesar_cipher_t* cipher, unsigned char string[]);
  * && cipher != NULL. Postcondiciones: deja el mensaje descifrado en el mismo
  * array que ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
-int cesar_decode(cesar_cipher_t* cipher, unsigned char string[],
+int cesar_decode(cesar_cipher_t* cipher, unsigned char msg[],
                  unsigned int msgLen);
 
 /*
@@ -37,6 +38,6 @@ int cesar_decode(cesar_cipher_t* cipher, unsigned char string[],
  * Postcondiciones: deja el mensaje cifrado o descifrado en el mismo array que
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
-int cesar_shift_bytes(int shift, unsigned char string[], unsigned int msgLen);
+int cesar_shift_bytes(int shift, unsigned char msg[], unsigned int msgLen);
 
-#endif
+#endif  // COMMON_CESAR_H_

@@ -1,3 +1,4 @@
+// Copyright [2020]<Jonathan David Rosenblatt>
 #include <stdio.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -15,7 +16,7 @@ static void do_stuff_with_stdin(arginfo_t* info) {
   while (!feof(stdin)) {
     size_t leidos = fread(buf, 1, porLeer, stdin);
     buf[leidos] = '\0';
-    //		printf("%s - %ld\n",buf,leidos);
+    // printf("%s - %ld\n",buf,leidos);
   }
 }
 

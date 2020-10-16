@@ -1,3 +1,4 @@
+// Copyright [2020]<Jonathan David Rosenblatt>
 #include "common_arginfo.h"
 
 #include <getopt.h>

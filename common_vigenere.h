@@ -1,5 +1,6 @@
-#ifndef VIGENERE_H_
-#define VIGENERE_H_
+// Copyright [2020]<Jonathan David Rosenblatt>
+#ifndef COMMON_VIGENERE_H_
+#define COMMON_VIGENERE_H_
 
 typedef struct vigenere_cipher {
   unsigned char* key;
@@ -44,4 +45,4 @@ int vigenere_encode(vigenere_cipher_t* cipher, unsigned char string[]);
 int vigenere_decode(vigenere_cipher_t* cipher, unsigned char string[],
                     unsigned int msgLen);
 
-#endif
+#endif  // COMMON_VIGENERE_H_

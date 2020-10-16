@@ -1,5 +1,8 @@
+// Copyright [2020]<Jonathan David Rosenblatt>
 #ifndef COMMON_SOCKET_H_
 #define COMMON_SOCKET_H_
+
+#include <stddef.h>
 
 typedef struct socket {
   int fd;
@@ -54,18 +57,21 @@ int socket_accept(socket_t* socket, socket_t* client);
 
 /*
  * Envía el mensaje ingresado, dado su largo, al destinatario acordado por el
- * socket dado. Precondiciones: socket != NULL && msg != NULL && len > 0.
+ * socket dado. 
+ * Precondiciones: socket != NULL && msg != NULL && len > 0.
  * Postcondiciones: envía el mensaje al destinatario. Devuelve -1 en caso de
- * error, 0 de lo contrario.
+ * error, de lo contrario devuelve la cantidad de bytes enviados.
  */
 int socket_send(socket_t* socket, char* msg, size_t len);
 
 /*
  * Recibe el mensaje ingresado, y lo escribe en el buffer ingresado; siendo len
- * el largo del buffer. Precondiciones: socket != NULL && msg != NULL && len >
+ * el largo del buffer. 
+ * Precondiciones: socket != NULL && msg != NULL && len >
  * 0. Postcondiciones: recibe el mensaje del destinatario y lo deja escrito en
- * el buffer ingresado. Devuelve -1 en caso de error, 0 de lo contrario.
+ * el buffer ingresado. Devuelve -1 en caso de error, de lo contrario devuelve
+ * la cantidad de bytes recibidos.
  */
 int socket_recv(socket_t* socket, char* buf, size_t len);
 
-#endif
+#endif  // COMMON_SOCKET_H_

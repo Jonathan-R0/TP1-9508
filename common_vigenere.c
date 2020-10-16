@@ -1,3 +1,4 @@
+// Copyright [2020]<Jonathan David Rosenblatt>
 #include "common_vigenere.h"
 
 #include <stdio.h>

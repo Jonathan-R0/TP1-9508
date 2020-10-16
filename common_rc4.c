@@ -1,3 +1,4 @@
+// Copyright [2020]<Jonathan David Rosenblatt>
 #include "common_rc4.h"
 
 #include <stddef.h>
@@ -57,6 +58,6 @@ int rc4_decode(rc4_cipher_t* cipher, unsigned char string[], unsigned int len) {
   for (int k = 0; k < len; k++) {
     string[k] ^= randChar(cipher);
   }
-
+ 
   return 0;
 }

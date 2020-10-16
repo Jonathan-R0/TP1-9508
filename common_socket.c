@@ -1,4 +1,6 @@
+// Copyright [2020]<Jonathan David Rosenblatt>
 #define _POSIX_C_SOURCE 201112L
+
 #include "common_socket.h"
 
 #include <arpa/inet.h>
@@ -8,6 +10,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <stddef.h>
 
 int socket_init(socket_t* socket) {
   if (socket == NULL) return -1;

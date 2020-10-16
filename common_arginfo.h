@@ -1,5 +1,6 @@
-#ifndef ARGINFO_H_
-#define ARGINFO_H_
+// Copyright [2020]<Jonathan David Rosenblatt>
+#ifndef COMMON_ARGINFO_H_
+#define COMMON_ARGINFO_H_
 
 #include <getopt.h>
 #define SIZE_OF_STRINGS 32
@@ -41,4 +42,4 @@ void getPortAndIp(arginfo_t* info, int argc, char* argv[]);
 int getMethodAndKey(arginfo_t* info, const struct option validArgs[], int argc,
                     char* argv[]);
 
-#endif
+#endif  // COMMON_ARGINFO_H_
