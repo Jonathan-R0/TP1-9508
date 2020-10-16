@@ -25,8 +25,8 @@ int vigenere_cipher_init(vigenere_cipher_t* cipher, unsigned char* key);
  * Postcondiciones: se sobreescribirá el mensaje con su versión cifrada. Se
  * devuelve -1 si ocurre un error, 0 de * lo contrario.
  */
-int vigenere_cipher_shift_bytes(vigenere_cipher_t* cipher, short estoyCifrando,
-                                unsigned char string[], unsigned int msgLen);
+int vigenere_cipher_shift_bytes(vigenere_cipher_t* cipher, int estoyCifrando,
+                                unsigned char msg[], unsigned int msgLen);
 
 /*
  * Dado un cipher válido y un mensaje se codifica el mismo.
@@ -34,7 +34,7 @@ int vigenere_cipher_shift_bytes(vigenere_cipher_t* cipher, short estoyCifrando,
  * Postcondiciones: se sobreescribirá el mensaje con su versión cifrada. Se
  * devuelve -1 si ocurre un error, 0 de * lo contrario.
  */
-int vigenere_encode(vigenere_cipher_t* cipher, unsigned char string[]);
+int vigenere_encode(vigenere_cipher_t* cipher, unsigned char msg[]);
 
 /*
  * Dado un cipher válido, un mensaje y el largo del mismo se decodifica el
@@ -42,7 +42,7 @@ int vigenere_encode(vigenere_cipher_t* cipher, unsigned char string[]);
  * NULL Postcondiciones: se sobreescribirá el mensaje con su versión descifrada.
  * Se devuelve -1 si ocurre un error, 0 de * lo contrario.
  */
-int vigenere_decode(vigenere_cipher_t* cipher, unsigned char string[],
+int vigenere_decode(vigenere_cipher_t* cipher, unsigned char msg[],
                     unsigned int msgLen);
 
 #endif  // COMMON_VIGENERE_H_

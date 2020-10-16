@@ -10,7 +10,6 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#include <stddef.h>
 
 int socket_init(socket_t* socket) {
   if (socket == NULL) return -1;

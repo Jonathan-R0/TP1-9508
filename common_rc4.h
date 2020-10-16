@@ -16,14 +16,6 @@ typedef struct rc4_cipher {
 } rc4_cipher_t;
 
 /*
- * Swappea los elementos de la posición "coef1" y "coef2" dentro del arreglo
- * recibido. Precondiciones: s != NULL && coef1,coef2 < strlen(s)
- * Postcondiciones: swappea los elementos, si el arreglo ingresado es NULL no
- * hace nada.
- */
-void swap(unsigned char* s, unsigned int coef1, unsigned int coef2);
-
-/*
  * Devuelve un char cuyo valor numérico está generado en función del estado del
  * cipher que ingrese. Precondiciones: cipher != NULL && cipher inicializado.
  * Postcondiciones: devuelve el char generado.
@@ -44,7 +36,7 @@ int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key);
  * Postcondiciones: deja el mensaje codificado en el array ingresado. Devuelve
  * -1 en caso de error, 0 de lo contrario
  */
-int rc4_encode(rc4_cipher_t* cipher, unsigned char string[]);
+int rc4_encode(rc4_cipher_t* cipher, unsigned char msg[]);
 
 /*
  * Decodifica el mensaje ingresado en función el cipher dado.
@@ -52,6 +44,6 @@ int rc4_encode(rc4_cipher_t* cipher, unsigned char string[]);
  * Postcondiciones: deja el mensaje decodificado en el array ingresado. Devuelve
  * -1 en caso de error, 0 de lo contrario.
  */
-int rc4_decode(rc4_cipher_t* cipher, unsigned char string[], unsigned int len);
+int rc4_decode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int len);
 
 #endif  // COMMON_RC4_H_
