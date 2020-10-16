@@ -58,9 +58,11 @@ static struct addrinfo* get_addr_info(socket_t* socket, const char* port,
 
   if (getaddrinfo(ip, port, &hints, &address_list) != 0) {
     fprintf(stderr, "Error, no hay conexiones disponibles.\n");
+    printf("no hay validas\n");
     socket_destroy(socket);
     return NULL;
   }
+  printf("hay validas\n");
   return address_list;  // Es válido devolver este puntero ya que vive en el
                         // heap.
 }
@@ -75,6 +77,7 @@ int socket_connect(socket_t* self, const char* port, const char* ip) {
        conex = conex->ai_next) {
     int extra_fd =
         socket(conex->ai_family, conex->ai_socktype, conex->ai_protocol);
+    printf("fd: %d\n",extra_fd);
     if (extra_fd == -1) {
       continue;
     } else if (connect(extra_fd, conex->ai_addr, conex->ai_addrlen) == -1) {
@@ -118,8 +121,8 @@ int socket_bind(socket_t* self, char* port) {
 }
 
 // SERVER ONLY
-int socket_listen(socket_t* socket) {
-  if (socket == NULL || listen(socket->fd, 10) == -1) {
+int socket_listen(socket_t* socket, unsigned int queueSize) {
+  if (socket == NULL || listen(socket->fd, queueSize) == -1) {
     socket_destroy(socket);
     return -1;
   }

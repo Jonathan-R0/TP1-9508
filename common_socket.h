@@ -41,11 +41,11 @@ int socket_bind(socket_t* socket, char* port);
 
 /*
  * Wrapper para listen(2). Verifica que el socket es válido.
- * Precondiciones: socket != NULL.
+ * Precondiciones: socket != NULL
  * Postcondiciones: ejecuta listen(2). Devuelve -1 en caso de error y llama al
  * destructor, 0 de lo contrario.
  */
-int socket_listen(socket_t* socket);
+int socket_listen(socket_t* socket, unsigned int queueSize);
 
 /*
  * Wrapper para accept(2). Verifica que el socket y puerto sean válidos.

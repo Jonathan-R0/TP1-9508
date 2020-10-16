@@ -21,7 +21,6 @@ static void _swap_chars(unsigned char* s, unsigned int coef1,
 
 int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key) {
   if (cipher == NULL || key == NULL) return -1;
-  cipher->key = key;
   cipher->a = cipher->b = 0;
   unsigned int len = (unsigned int)strlen((char*)key);
 

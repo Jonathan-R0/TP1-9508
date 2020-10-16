@@ -10,7 +10,6 @@
  */
 typedef struct rc4_cipher {
   unsigned char S[256];
-  unsigned char* key;
   unsigned int a;
   unsigned int b;
 } rc4_cipher_t;
