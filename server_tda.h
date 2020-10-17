@@ -34,4 +34,6 @@ int server_destroy(server_t* self);
  */
 int server_connect(server_t* self, char* port);
 
+int server_recv(server_t* self);
+
 #endif  // SERVER_TDA_H_

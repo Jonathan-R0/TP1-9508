@@ -1,7 +1,7 @@
+#include <stdio.h>
+
 #include "client_tda.h"
 #include "common_socket.h"
-
-#define QUEUE_SIZE 10
 
 int client_init(client_t* self){
 	if (self == NULL || 
@@ -27,4 +27,16 @@ int client_connect(client_t* self, char* port, char* ip){
 	return 0;
 }
 
+int client_send(client_t* self, char* msg, size_t msgLen){
+
+	int i = 0;
+
+    int bytes_sent = 0;
+    while (bytes_sent < msgLen && ++i < 10){
+        if ((bytes_sent += socket_send(&self->mysocket,msg,msgLen)) == -1) {
+            return -1;
+        }
+    }
+    return 0;
+}
 

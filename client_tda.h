@@ -33,4 +33,6 @@ int client_destroy(client_t* self);
  */
 int client_connect(client_t* self, char* port, char* ip);
 
+int client_send(client_t* self, char* msg, size_t msgLen);
+
 #endif  // SERVER_TDA_H_

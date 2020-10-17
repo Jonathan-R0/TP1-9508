@@ -58,11 +58,9 @@ static struct addrinfo* get_addr_info(socket_t* socket, const char* port,
 
   if (getaddrinfo(ip, port, &hints, &address_list) != 0) {
     fprintf(stderr, "Error, no hay conexiones disponibles.\n");
-    printf("no hay validas\n");
     socket_destroy(socket);
     return NULL;
   }
-  printf("hay validas\n");
   return address_list;  // Es válido devolver este puntero ya que vive en el
                         // heap.
 }
@@ -77,7 +75,6 @@ int socket_connect(socket_t* self, const char* port, const char* ip) {
        conex = conex->ai_next) {
     int extra_fd =
         socket(conex->ai_family, conex->ai_socktype, conex->ai_protocol);
-    printf("fd: %d\n",extra_fd);
     if (extra_fd == -1) {
       continue;
     } else if (connect(extra_fd, conex->ai_addr, conex->ai_addrlen) == -1) {
@@ -135,13 +132,13 @@ int socket_send(socket_t* socket, char* msg, size_t len) {
   unsigned int remaining = len;
   while (already_sent < len) {
     int just_sent = 0;
-    printf("Estoy mandando: %d bytes\n", (int)remaining);
     if ((just_sent = send(socket->fd, &msg[already_sent], remaining,
-                          MSG_NOSIGNAL)) == -1)
+                          MSG_NOSIGNAL)) == -1){
       return -1;
-    else if (just_sent == 0)
+    } else if (just_sent == 0) {
       break;
-    already_sent += just_sent;
+    }
+	already_sent += just_sent;
     remaining -= already_sent;
   }
   return already_sent;
@@ -153,7 +150,6 @@ int socket_recv(socket_t* socket, char* buf, size_t len) {
   unsigned int remaining = len;
   while (already_read < len) {
     int just_read = 0;
-    printf("Estoy recibiendo: %d bytes\n", (int)remaining);
     if ((just_read = recv(socket->fd, &buf[already_read], remaining,
                           MSG_NOSIGNAL)) == -1) {
       return -1;
@@ -165,3 +161,4 @@ int socket_recv(socket_t* socket, char* buf, size_t len) {
   }
   return already_read;
 }
+
