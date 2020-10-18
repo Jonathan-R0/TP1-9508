@@ -17,7 +17,7 @@
 
 int decipher_and_recv_cesar(server_t* self, unsigned char* key) {
   if (self == NULL || key == NULL) return -1;
-  unsigned char msg[BYTES_A_ESCRIBIR] = {0};
+  unsigned char msg[BYTES_A_ESCRIBIR];
   int read = -1;
   cesar_cipher_t decipher;
   if (cesar_cipher_init(&decipher,
@@ -36,7 +36,7 @@ int decipher_and_recv_cesar(server_t* self, unsigned char* key) {
 
 int decipher_and_recv_vigenere(server_t* self, unsigned char* key) {
   if (self == NULL || key == NULL) return -1;
-  unsigned char msg[BYTES_A_ESCRIBIR] = {0};
+  unsigned char msg[BYTES_A_ESCRIBIR];
   int read = -1;
   vigenere_cipher_t decipher;
   if (vigenere_cipher_init(&decipher, key) == -1) return -1;
@@ -53,7 +53,7 @@ int decipher_and_recv_vigenere(server_t* self, unsigned char* key) {
 
 int decipher_and_recv_rc4(server_t* self, unsigned char* key) {
   if (self == NULL || key == NULL) return -1;
-  unsigned char msg[BYTES_A_ESCRIBIR] = {0};
+  unsigned char msg[BYTES_A_ESCRIBIR];
   int read = -1;
   rc4_cipher_t decipher;
   if (rc4_cipher_init(&decipher, key) == -1) return -1;

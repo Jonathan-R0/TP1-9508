@@ -17,7 +17,7 @@
 
 int cipher_and_send_cesar(client_t* self, unsigned char* key) {
   if (self == NULL || key == NULL) return -1;
-  unsigned char msg[BYTES_A_LEER] = {0};
+  unsigned char msg[BYTES_A_LEER];
   int read = -1;
   cesar_cipher_t cipher;
   if (cesar_cipher_init(&cipher, (unsigned int)strtol((char*)key, NULL, 10)) ==
@@ -36,7 +36,7 @@ int cipher_and_send_cesar(client_t* self, unsigned char* key) {
 
 int cipher_and_send_vigenere(client_t* self, unsigned char* key) {
   if (self == NULL || key == NULL) return -1;
-  unsigned char msg[BYTES_A_LEER] = {0};
+  unsigned char msg[BYTES_A_LEER];
   int read = -1;
   vigenere_cipher_t cipher;
   if (vigenere_cipher_init(&cipher, key) == -1) return -1;
@@ -53,7 +53,7 @@ int cipher_and_send_vigenere(client_t* self, unsigned char* key) {
 
 int cipher_and_send_rc4(client_t* self, unsigned char* key) {
   if (self == NULL || key == NULL) return -1;
-  unsigned char msg[BYTES_A_LEER] = {0};
+  unsigned char msg[BYTES_A_LEER];
   int read = -1;
   rc4_cipher_t cipher;
   if (rc4_cipher_init(&cipher, key) == -1) return -1;
