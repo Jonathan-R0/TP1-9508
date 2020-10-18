@@ -17,16 +17,18 @@ int cesar_cipher_init(cesar_cipher_t* cipher, unsigned int key);
 
 /*
  * Dado un mensaje se codifica en función del incremento de caracteres indicado
- * por el cipher. Precondición: string != NULL && cipher inicializado && cipher
- * != NULL. Postcondiciones: deja el mensaje cifrado en el mismo array que
+ * por el cipher.
+ * Precondición: string != NULL && cipher inicializado && cipher != NULL.
+ * Postcondiciones: deja el mensaje cifrado en el mismo array que
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
 int cesar_encode(cesar_cipher_t* cipher, unsigned char msg[]);
 
 /*
  * Dado un mensaje se decodifica en función del decremento de caracteres
- * indicado por el cipher. Precondición: string != NULL && cipher inicializado
- * && cipher != NULL. Postcondiciones: deja el mensaje descifrado en el mismo
+ * indicado por el cipher.
+ * Precondición: string != NULL && cipher inicializado && cipher != NULL.
+ * Postcondiciones: deja el mensaje descifrado en el mismo
  * array que ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
 int cesar_decode(cesar_cipher_t* cipher, unsigned char msg[],
@@ -34,7 +36,8 @@ int cesar_decode(cesar_cipher_t* cipher, unsigned char msg[],
 
 /*
  * Dado un mensaje se codifica o decodifica, en función del incremento o
- * decremento a computar en los caracteres. Precondición: string != NULL.
+ * decremento a computar en los caracteres.
+ * Precondición: string != NULL.
  * Postcondiciones: deja el mensaje cifrado o descifrado en el mismo array que
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */

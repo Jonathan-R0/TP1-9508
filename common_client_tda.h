@@ -1,12 +1,12 @@
 // Copyright [2020]<Jonathan David Rosenblatt>
-#ifndef CLIENT_TDA_H_
-#define CLIENT_TDA_H_
+#ifndef COMMON_CLIENT_TDA_H_
+#define COMMON_CLIENT_TDA_H_
 
 #include "common_socket.h"
 
-typedef struct client{
-    socket_t mysocket;
-}client_t;
+typedef struct client {
+  socket_t mysocket;
+} client_t;
 
 /*
  * Inicializa el tda client y sus correspondiente socket asociado.
@@ -25,14 +25,14 @@ int client_init(client_t* self);
 int client_destroy(client_t* self);
 
 /*
- * Intenta establecer una conexión con el puerto e ip dados. Si el bind, 
- * listen o accept fallan, se liberan los recursos.  
+ * Intenta establecer una conexión con el puerto e ip dados. Si el bind,
+ * listen o accept fallan, se liberan los recursos.
  * Precondiciones: self != NULL && port != NULL && ip != NULL.
  * Postcondiciones: deja los sockets inicializados para enviar y recibir datos
- * entre el cliente y servidor. Devuelve -1 en caso de error, 0 de lo contrario. 
+ * entre el cliente y servidor. Devuelve -1 en caso de error, 0 de lo contrario.
  */
 int client_connect(client_t* self, char* port, char* ip);
 
 int client_send(client_t* self, char* msg, size_t msgLen);
 
-#endif  // SERVER_TDA_H_
+#endif  // COMMON_CLIENT_TDA_H_

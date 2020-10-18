@@ -16,7 +16,8 @@ typedef struct rc4_cipher {
 
 /*
  * Devuelve un char cuyo valor numérico está generado en función del estado del
- * cipher que ingrese. Precondiciones: cipher != NULL && cipher inicializado.
+ * cipher que ingrese.
+ * Precondiciones: cipher != NULL && cipher inicializado.
  * Postcondiciones: devuelve el char generado.
  */
 unsigned char randChar(rc4_cipher_t* cipher);

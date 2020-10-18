@@ -33,7 +33,6 @@ int socket_accept(socket_t* socket, socket_t* client) {
   int newSocket =
       accept(socket->fd, (struct sockaddr*)&address, &addressLength);
   inet_ntop(AF_INET, &(address.sin_addr), addressBuf, INET_ADDRSTRLEN);
-  printf("Se conectó un usuario: %s\n", addressBuf);
   client->fd = newSocket;
   return 0;
 }
@@ -133,12 +132,12 @@ int socket_send(socket_t* socket, char* msg, size_t len) {
   while (already_sent < len) {
     int just_sent = 0;
     if ((just_sent = send(socket->fd, &msg[already_sent], remaining,
-                          MSG_NOSIGNAL)) == -1){
+                          MSG_NOSIGNAL)) == -1) {
       return -1;
     } else if (just_sent == 0) {
       break;
     }
-	already_sent += just_sent;
+    already_sent += just_sent;
     remaining -= already_sent;
   }
   return already_sent;
@@ -161,4 +160,3 @@ int socket_recv(socket_t* socket, char* buf, size_t len) {
   }
   return already_read;
 }
-

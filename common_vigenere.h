@@ -11,9 +11,10 @@ typedef struct vigenere_cipher {
 /*
  * Inicializa el cipher dada una key válida. También guardará la última posición
  * de la key por la que pasó por si tuviera que cortar el proceso de codificado
- * a la mitad. Precondiciones: cipher != NULL && key != NULL. Postcondiciones:
- * deja el cipher recibido inicializado. Se devuelve -1 si ocurre un error, 0 de
- * lo contrario.
+ * a la mitad.
+ * Precondiciones: cipher != NULL && key != NULL.
+ * Postcondiciones: deja el cipher recibido inicializado. Se devuelve -1 si
+ * ocurre un error, 0 de lo contrario.
  */
 int vigenere_cipher_init(vigenere_cipher_t* cipher, unsigned char* key);
 
@@ -38,8 +39,9 @@ int vigenere_encode(vigenere_cipher_t* cipher, unsigned char msg[]);
 
 /*
  * Dado un cipher válido, un mensaje y el largo del mismo se decodifica el
- * mismo. Precondiciones: cipher != NULL&& cipher inicializado  && string !=
- * NULL Postcondiciones: se sobreescribirá el mensaje con su versión descifrada.
+ * mismo.
+ * Precondiciones: cipher != NULL&& cipher inicializado  && string != NULL
+ * Postcondiciones: se sobreescribirá el mensaje con su versión descifrada.
  * Se devuelve -1 si ocurre un error, 0 de * lo contrario.
  */
 int vigenere_decode(vigenere_cipher_t* cipher, unsigned char msg[],
