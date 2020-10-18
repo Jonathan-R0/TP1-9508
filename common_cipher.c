@@ -26,7 +26,7 @@ int cipher_and_send_cesar(client_t* self, unsigned char* key) {
   while ((read = read_from_file_to_buf((char*)msg, BYTES_A_LEER - 1, stdin)) !=
          0) {
     if (read == -1 || cesar_encode(&cipher, msg) == -1 ||
-        client_send(self, (char*)msg, strlen((char*)msg)) == -1) {
+        client_send(self, (char*)msg, read) == -1) {
       fprintf(stderr, "Sending or reading error\n");
       return -1;
     }
@@ -43,7 +43,7 @@ int cipher_and_send_vigenere(client_t* self, unsigned char* key) {
   while ((read = read_from_file_to_buf((char*)msg, BYTES_A_LEER - 1, stdin)) !=
          0) {
     if (read == -1 || vigenere_encode(&cipher, msg) == -1 ||
-        client_send(self, (char*)msg, strlen((char*)msg)) == -1) {
+        client_send(self, (char*)msg, read) == -1) {
       fprintf(stderr, "Sending or reading error\n");
       return -1;
     }
@@ -60,7 +60,7 @@ int cipher_and_send_rc4(client_t* self, unsigned char* key) {
   while ((read = read_from_file_to_buf((char*)msg, BYTES_A_LEER - 1, stdin)) !=
          0) {
     if (read == -1 || rc4_encode(&cipher, msg) == -1 ||
-        client_send(self, (char*)msg, strlen((char*)msg)) == -1) {
+        client_send(self, (char*)msg, read) == -1) {
       fprintf(stderr, "Sending or reading error\n");
       return -1;
     }

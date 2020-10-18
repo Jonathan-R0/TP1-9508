@@ -56,10 +56,6 @@ int decipher_and_recv_rc4(server_t* self, unsigned char* key) {
   rc4_cipher_t decipher;
   if (rc4_cipher_init(&decipher, key) == -1) return -1;
   while ((read = server_recv(self, (char*)msg, BYTES_A_ESCRIBIR - 1)) != 0) {
-
-	for (int k = 0; k < sizeof(msg) - 1; k++) fprintf(stderr,"%02x ",msg[k]);
-	printf("\n");
-
     if (read == -1 || rc4_decode(&decipher, msg, read) == -1) {
       fprintf(stderr, "Sending or reading error\n");
       return -1;

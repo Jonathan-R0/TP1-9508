@@ -152,7 +152,7 @@ int socket_recv(socket_t* socket, char* buf, size_t len) {
       return -1;
     } else if (just_read == 0) {
       break;
-    } 
+    }
     already_read += just_read;
     remaining -= just_read;
   }
