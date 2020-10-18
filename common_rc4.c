@@ -64,5 +64,6 @@ int rc4_decode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int len) {
   for (int k = 0; k < len; k++) {
     msg[k] ^= randChar(cipher);
   }
+
   return 0;
 }

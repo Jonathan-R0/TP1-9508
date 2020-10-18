@@ -12,4 +12,14 @@ int read_from_file_to_buf(char buf[], unsigned int msgLen, FILE* fp) {
     buf[leidos] = 0;
   }
   return leidos;
-}
+/*  int leidos = 0;
+  while (leidos < msgLen){
+    if (fgets(buf,1,fp) == NULL){
+      buf[leidos] = 0;
+      return 0;
+    }
+	leidos++;
+  }
+  buf[leidos] = 0;
+  return leidos;
+*/}
