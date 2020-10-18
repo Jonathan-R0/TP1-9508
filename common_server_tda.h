@@ -34,6 +34,15 @@ int server_destroy(server_t* self);
  */
 int server_connect(server_t* self, char* port);
 
-int server_recv(server_t* self, char buf[], int bugLen);
+/*
+ * Dado el cliente y mensaje dados, con su largo correspondiente, recibe la 
+ * cantidad de caracteres del mismo indicados por el socket asociado al 
+ * cliente.
+ * Precondiciones: self != NULL && self inicializado y configurado 
+ * && buf != NULL
+ * Postcondiciones: recibe el mensaje enviado por el socket asociado. 
+ * Devuelve -1 en caso de error, la cantidad de chars leidos de lo contrario.
+ */
+int server_recv(server_t* self, char buf[], int bufLen);
 
 #endif  // COMMON_SERVER_TDA_H_

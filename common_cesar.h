@@ -13,7 +13,7 @@ typedef struct cesar_cipher {
  * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
  * de lo contrario.
  */
-int cesar_cipher_init(cesar_cipher_t* cipher, unsigned int key);
+int cesar_cipher_init(cesar_cipher_t* cipher, unsigned char* key);
 
 /*
  * Dado un mensaje se codifica en función del incremento de caracteres indicado
@@ -37,7 +37,7 @@ int cesar_decode(cesar_cipher_t* cipher, unsigned char msg[],
 /*
  * Dado un mensaje se codifica o decodifica, en función del incremento o
  * decremento a computar en los caracteres.
- * Precondición: string != NULL.
+ * Precondición: msg != NULL.
  * Postcondiciones: deja el mensaje cifrado o descifrado en el mismo array que
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */

@@ -26,6 +26,8 @@ int client_connect(client_t* self, char* port, char* ip) {
 }
 
 int client_send(client_t* self, char* msg, size_t msgLen) {
+  if (self == NULL || msg == NULL) return -1;
+
   int bytes_sent = 0;
   while (bytes_sent < msgLen) {
     if ((bytes_sent += socket_send(&self->mysocket, msg, msgLen)) == -1) {

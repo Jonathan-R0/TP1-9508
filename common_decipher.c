@@ -20,8 +20,7 @@ int decipher_and_recv_cesar(server_t* self, unsigned char* key) {
   unsigned char msg[BYTES_A_ESCRIBIR];
   int read = -1;
   cesar_cipher_t decipher;
-  if (cesar_cipher_init(&decipher,
-                        (unsigned int)strtol((char*)key, NULL, 10)) == -1)
+  if (cesar_cipher_init(&decipher, key) == -1)
     return -1;
   while ((read = server_recv(self, (char*)msg, BYTES_A_ESCRIBIR - 1)) != 0) {
     if (read == -1 || cesar_decode(&decipher, msg, read) == -1) {

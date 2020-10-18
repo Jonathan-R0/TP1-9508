@@ -3,10 +3,11 @@
 
 #include <stddef.h>
 #include <string.h>
+#include <stdlib.h>
 
-int cesar_cipher_init(cesar_cipher_t* cipher, unsigned int key) {
+int cesar_cipher_init(cesar_cipher_t* cipher, unsigned char* key) {
   if (cipher == NULL) return -1;
-  cipher->shift = key;
+  cipher->shift = (unsigned int)strtol((char*)key, NULL, 10);
   return 0;
 }
 

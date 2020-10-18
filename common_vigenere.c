@@ -9,7 +9,7 @@ int vigenere_shift_bytes(vigenere_cipher_t* cipher, int estoyCifrando,
                          unsigned char msg[], unsigned int msgLen) {
   unsigned int keyLen = (unsigned int)strlen((char*)cipher->key);
   // Para inicializar todo en cero en una sola operación.
-  unsigned char* buf = calloc(sizeof(unsigned char), msgLen + 1);
+  unsigned char buf[msgLen + 1];
   if (buf == NULL && (estoyCifrando == -1 || estoyCifrando == 1)) return -1;
   int i;
   int j = cipher->lastKeyIndex;
@@ -21,7 +21,6 @@ int vigenere_shift_bytes(vigenere_cipher_t* cipher, int estoyCifrando,
   }
   strncpy((char*)msg, (char*)buf, msgLen);
   cipher->lastKeyIndex = j;
-  free(buf);
   return 0;
 }
 

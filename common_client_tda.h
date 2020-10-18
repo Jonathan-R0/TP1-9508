@@ -33,6 +33,15 @@ int client_destroy(client_t* self);
  */
 int client_connect(client_t* self, char* port, char* ip);
 
+/*
+ * Dado el cliente y mensaje dados, con su largo correspondiente, envia la 
+ * cantidad de caracteres del mismo indicados por el socket asociado al 
+ * cliente.
+ * Precondiciones: self != NULL && self inicializado y configurado 
+ * && msg != NULL
+ * Postcondiciones: envía el mensaje recibido por el socket asociado. Devuelve
+ * -1 en caso de error, 0 de lo contrario.
+ */
 int client_send(client_t* self, char* msg, size_t msgLen);
 
 #endif  // COMMON_CLIENT_TDA_H_
