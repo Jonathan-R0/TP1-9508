@@ -134,11 +134,9 @@ int socket_send(socket_t* socket, char* msg, size_t len) {
     if ((just_sent = send(socket->fd, &msg[already_sent], remaining,
                           MSG_NOSIGNAL)) == -1) {
       return -1;
-    } else if (just_sent == 0) {
-      break;
     }
     already_sent += just_sent;
-    remaining -= already_sent;
+    remaining -= just_sent;
   }
   return already_sent;
 }
@@ -154,9 +152,9 @@ int socket_recv(socket_t* socket, char* buf, size_t len) {
       return -1;
     } else if (just_read == 0) {
       break;
-    }
+    } 
     already_read += just_read;
-    remaining -= already_read;
+    remaining -= just_read;
   }
   return already_read;
 }
