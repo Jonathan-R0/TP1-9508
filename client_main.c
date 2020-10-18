@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 #include "common_arginfo.h"
-#include "common_cipher.h"
+#include "client_cipher.h"
 #include "common_client_tda.h"
 #include "common_socket.h"
 

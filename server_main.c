@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "common_arginfo.h"
-#include "common_decipher.h"
+#include "server_decipher.h"
 #include "common_server_tda.h"
 #include "common_socket.h"
 

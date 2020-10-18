@@ -1,6 +1,6 @@
 // Copyright [2020]<Jonathan David Rosenblatt>
 
-#include "common_decipher.h"
+#include "server_decipher.h"
 
 #include <stddef.h>
 #include <stdio.h>
