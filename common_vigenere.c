@@ -20,7 +20,7 @@ int vigenere_shift_bytes(vigenere_cipher_t* cipher, int estoyCifrando,
     j++;
   }
   strncpy((char*)msg, (char*)buf, msgLen);
-  cipher->lastKeyIndex += j;
+  cipher->lastKeyIndex = j;
   free(buf);
   return 0;
 }
