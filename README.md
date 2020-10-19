@@ -35,7 +35,7 @@ Aclaración: el mensaje que reciba el servidor tendrá sentido solo si el métod
 
 ## Diseño, Redes y Cifrado
 
-El proyecto tiene varios archivos y cada uno de ellos representa y abstrae las diferentes funcionalidades que se necesitan para que funcionen en conjunto. Los archivos que terminan con ```"_main.c"``` son el esqueleto del proyecto, llaman a todas las otras funciones y verifican los outputs de todas.
+El proyecto tiene varios archivos y cada uno de ellos representa y abstrae las diferentes funcionalidades que se necesitan para que funcionen en conjunto. Las clases que terminan con ```"_main.c"``` son el esqueleto del proyecto, llaman a todas las otras funciones y verifican los outputs de todas.
 
 Luego están las funciones ```client_cipherAndSend``` y ```server_decipherAndRecv``` que llaman y verifican lo que hacen los encriptadores, los sockets (encapsulados por los tdas ```client_tda``` y ```server_tda```) y el lector de archivos en el caso del cliente. Estos le proveen a los ```_main``` una buena abstracción de como cada cifrador opera, de como se lee del stdin y de como operan los sockets.
 
@@ -46,7 +46,6 @@ Todos estos archivos, además de encapsular, permiten generar código reutilizab
 <br><p align="center"><img src="img/classdiag.png"/></p> 
 
 ***El software utilizado para realizar los diagramas, plantuml, interpreta los elementos ingresados como clases, pero en C no hay clases.***
-
 
 En el siguiente diagrama de secuencia se aprecia el flujo del programa cuando desde el servidor se quiere desencriptar lo que se recibe por red. Se ve que la capa más alta de abstracción, es decir el servidor, solamente hace algunas llamadas y no se encarga de trabajar los datos, ya que todas esas responsabilidades se las delega a las entidades de más baja abstracción.
 
