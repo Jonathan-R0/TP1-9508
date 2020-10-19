@@ -10,8 +10,8 @@
  */
 typedef struct rc4_cipher {
   unsigned char S[256];
-  unsigned int a;
-  unsigned int b;
+  unsigned int coefi;
+  unsigned int coefj;
 } rc4_cipher_t;
 
 /*

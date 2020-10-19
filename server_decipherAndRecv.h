@@ -1,6 +1,6 @@
 // Copyright [2020]<Jonathan David Rosenblatt>
-#ifndef SERVER_DECIPHER_H_
-#define SERVER_DECIPHER_H_
+#ifndef SERVER_DECIPHERANDRECV_H_
+#define SERVER_DECIPHERANDRECV_H_
 
 #include "common_server_tda.h"
 
@@ -34,4 +34,4 @@ int decipher_and_recv_vigenere(server_t* self, unsigned char* key);
  */
 int decipher_and_recv_rc4(server_t* self, unsigned char* key);
 
-#endif  // SERVER_DECIPHER_H_
+#endif  // SERVER_DECIPHERANDRECV_H_

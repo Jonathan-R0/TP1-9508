@@ -18,15 +18,15 @@ server_tda -> socket: bind, listen, accept
 return validez
 
 servidor -> servidor: decipher_and_recv
-servidor -> server_decipher: decipher_and_recv_rc4
-server_decipher -> rc4**: <<init>>
+servidor -> server_decipherAndRecv: decipher_and_recv_rc4
+server_decipherAndRecv -> rc4**: <<init>>
 
 loop mientras el servidor reciba datos
-  server_decipher -> server_tda: server_recv
+  server_decipherAndRecv -> server_tda: server_recv
   server_tda -> socket: socket_recv
   return bytes_read
   return leidos
-  server_decipher -> rc4: decode
+  server_decipherAndRecv -> rc4: decode
   return validez
 end
 return validez

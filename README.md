@@ -37,7 +37,7 @@ Aclaración: el mensaje que reciba el servidor tendrá sentido solo si el métod
 
 El proyecto tiene varios archivos y cada uno de ellos representa y abstrae las diferentes funcionalidades que se necesitan para que funcionen en conjunto. Las clases que terminan con ```"_main.c"``` son el esqueleto del proyecto, llaman a todas las otras funciones y verifican los outputs de todas.
 
-Luego están las funciones ```client_cipher``` y ```server_cipher``` que llaman y verifican lo que hacen los encriptadores, los sockets (encapsulados por los tdas ```client_tda``` y ```server_tda```) y el lector de archivos en el caso del cliente. Estos le proveen a los ```_main``` una buena abstracción de como cada cifrador opera, de como se lee del stdin y de como operan los sockets.
+Luego están las funciones ```client_cipherAndSend``` y ```server_decipherAndRecv``` que llaman y verifican lo que hacen los encriptadores, los sockets (encapsulados por los tdas ```client_tda``` y ```server_tda```) y el lector de archivos en el caso del cliente. Estos le proveen a los ```_main``` una buena abstracción de como cada cifrador opera, de como se lee del stdin y de como operan los sockets.
 
 Finalmente están las 3 clases encriptadoras y el socket. La implementación de los ```client_tda``` y ```server_tda``` abstraen la implementación del socket.
 
@@ -53,7 +53,7 @@ Vemos que el servidor le pide a su TDA que se conecte con el cliente, sin saber 
 
 Luego de establecer una conexión el servidor le delega a otra entidad el descifrado de los datos que llegan por red, y una vez más vemos como el servidor no se tiene que preocupar de como desciframos o pedimos los datos. 
 
-El server_decipher a su vez le delega al server_tda que busque los datos y descifra todo siempre que el socket, encapsulado por el server_tda, pueda recibir datos.
+El server_decipherAndRecv a su vez le delega al server_tda que busque los datos y descifra todo siempre que el socket, encapsulado por el server_tda, pueda recibir datos.
 
 Finalmente el servidor libera todos los recursos utilizados.
 

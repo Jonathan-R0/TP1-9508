@@ -12,14 +12,14 @@ class server_main{
 	#decipher_and_recv()
 }
 	
-class client_cipher{
+class client_cipherAndSend{
 	+cipher
 	+cipher_and_send_cesar()
 	+cipher_and_send_vigenere()
 	+cipher_and_send_rc4()
 }
 	
-class server_decipher{
+class server_decipherAndRecv{
 	+decipher
 	+decipher_and_recv_cesar()
 	+decipher_and_recv_vigenere()
@@ -85,21 +85,21 @@ class vigenere{
 	#shift_bytes()
 }
 	
-client_main --> client_cipher
-client_cipher ..> client_tda
-server_main --> server_decipher
-server_decipher ..> server_tda
+client_main --> client_cipherAndSend
+client_cipherAndSend ..> client_tda
+server_main --> server_decipherAndRecv
+server_decipherAndRecv ..> server_tda
 client_main *-- arginfo
 server_main *-- arginfo
 
-client_cipher --> cesar
-client_cipher --> rc4
-client_cipher --> vigenere
-client_cipher --o file_reader
+client_cipherAndSend --> cesar
+client_cipherAndSend --> rc4
+client_cipherAndSend --> vigenere
+client_cipherAndSend --o file_reader
 
-server_decipher --> cesar
-server_decipher --> rc4
-server_decipher --> vigenere
+server_decipherAndRecv --> cesar
+server_decipherAndRecv --> rc4
+server_decipherAndRecv --> vigenere
 
 client_tda ..> socket
 server_tda ..> socket

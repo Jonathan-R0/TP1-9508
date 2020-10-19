@@ -21,7 +21,7 @@ static void _swap_chars(unsigned char* s, unsigned int coef1,
 
 int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key) {
   if (cipher == NULL || key == NULL) return -1;
-  cipher->a = cipher->b = 0;
+  cipher->coefi = cipher->coefj = 0;
   unsigned int len = (unsigned int)strlen((char*)key);
 
   unsigned int i, j;
@@ -38,16 +38,16 @@ int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key) {
 unsigned char randChar(rc4_cipher_t* cipher) {
   if (cipher == NULL) return -1;
 
-  unsigned int i = cipher->a;  // Con estas variables evitamos
-  unsigned int j = cipher->b;  // tantos accesos a memoria.
+  unsigned int i = cipher->coefi;  // Con estas variables evitamos
+  unsigned int j = cipher->coefj;  // tantos accesos a memoria.
 
   i = (i + 1) & 255;
   j = (j + cipher->S[i]) & 255;
 
   _swap_chars(cipher->S, i, j);
 
-  cipher->a = i;
-  cipher->b = j;
+  cipher->coefi = i;
+  cipher->coefj = j;
 
   return cipher->S[(cipher->S[i] + cipher->S[j]) & 255];
 }

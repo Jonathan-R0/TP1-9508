@@ -1,6 +1,6 @@
 // Copyright [2020]<Jonathan David Rosenblatt>
-#ifndef CLIENT_CIPHER_H_
-#define CLIENT_CIPHER_H_
+#ifndef CLIENT_CIPHERANDSEND_H_
+#define CLIENT_CIPHERANDSEND_H_
 
 #include "common_client_tda.h"
 
@@ -34,4 +34,4 @@ int cipher_and_send_vigenere(client_t* self, unsigned char* key);
  */
 int cipher_and_send_rc4(client_t* self, unsigned char* key);
 
-#endif  // CLIENT_CIPHER_H_
+#endif  // CLIENT_CIPHERANDSEND_H_
