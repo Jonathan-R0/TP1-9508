@@ -1,5 +1,5 @@
 # Taller de Programación I - Cátedra Veiga - FIUBA
-# Trabajo Práctico 0 
+# Trabajo Práctico I 
 
 <h2 align="right">Jonathan David Rosenblatt</h2>
 <h2 align="right">104105</h2>
@@ -34,6 +34,8 @@ Siendo:
 Aclaración: el mensaje que reciba el servidor tendrá sentido solo si el método y clave ingresados en ambas puntas coinciden. Pueden ingresarse valores diferentes pero la llegada muy probablemente no tenga ningún sentido.
 
 ## Diseño
+
+<br><p align="center"><img src="img/classdiag.png"/></p> 
 
 ## Buenas Prácticas
 

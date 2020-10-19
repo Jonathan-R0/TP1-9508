@@ -24,7 +24,7 @@ int decipher_and_recv_cesar(server_t* self, unsigned char* key) {
     return -1;
   while ((read = server_recv(self, (char*)msg, BYTES_A_ESCRIBIR - 1)) != 0) {
     if (read == -1 || cesar_decode(&decipher, msg, read) == -1) {
-      fprintf(stderr, "Sending or reading error\n");
+      fprintf(stderr, "%s\n", strerror(errno));
       return -1;
     }
     printf("%s", msg);
@@ -40,7 +40,7 @@ int decipher_and_recv_vigenere(server_t* self, unsigned char* key) {
   if (vigenere_cipher_init(&decipher, key) == -1) return -1;
   while ((read = server_recv(self, (char*)msg, BYTES_A_ESCRIBIR - 1)) != 0) {
     if (read == -1 || vigenere_decode(&decipher, msg, read) == -1) {
-      fprintf(stderr, "Sending or reading error\n");
+      fprintf(stderr, "%s\n", strerror(errno));
       return -1;
     }
     printf("%s", msg);
@@ -56,7 +56,7 @@ int decipher_and_recv_rc4(server_t* self, unsigned char* key) {
   if (rc4_cipher_init(&decipher, key) == -1) return -1;
   while ((read = server_recv(self, (char*)msg, BYTES_A_ESCRIBIR - 1)) != 0) {
     if (read == -1 || rc4_decode(&decipher, msg, read) == -1) {
-      fprintf(stderr, "Sending or reading error\n");
+      fprintf(stderr, "%s\n", strerror(errno));
       return -1;
     }
     printf("%s", msg);
