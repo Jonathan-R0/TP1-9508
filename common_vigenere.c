@@ -9,7 +9,7 @@ int vigenere_shift_bytes(vigenere_cipher_t* cipher, int estoyCifrando,
                          unsigned char msg[], unsigned int msgLen) {
   unsigned int keyLen = (unsigned int)strlen((char*)cipher->key);
   if (msg == NULL && !(estoyCifrando == -1 || estoyCifrando == 1)) return -1;
-  unsigned char buf[msgLen + 1];
+  unsigned char buf[msgLen];
   int i;
   int j = cipher->lastKeyIndex;
   for (i = 0; i < msgLen; i++) {
@@ -23,10 +23,10 @@ int vigenere_shift_bytes(vigenere_cipher_t* cipher, int estoyCifrando,
   return 0;
 }
 
-int vigenere_encode(vigenere_cipher_t* cipher, unsigned char msg[]) {
+int vigenere_encode(vigenere_cipher_t* cipher, unsigned char msg[],
+                    unsigned int msgLen) {
   if (cipher == NULL) return -1;
-  return vigenere_shift_bytes(cipher, 1, msg,
-                              (unsigned int)strlen((char*)msg));
+  return vigenere_shift_bytes(cipher, 1, msg, msgLen);
 }
 
 int vigenere_decode(vigenere_cipher_t* cipher, unsigned char msg[],
@@ -43,3 +43,5 @@ int vigenere_cipher_init(vigenere_cipher_t* cipher, unsigned char* key) {
   cipher->lastKeyIndex = 0;
   return 0;
 }
+
+void vigenere_destroy(vigenere_cipher_t* cipher) {}

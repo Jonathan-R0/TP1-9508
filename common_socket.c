@@ -147,8 +147,7 @@ int socket_recv(socket_t* socket, char* buf, size_t len) {
   unsigned int remaining = len;
   while (already_read < len) {
     int just_read = 0;
-    if ((just_read = recv(socket->fd, &buf[already_read], remaining,
-                          MSG_NOSIGNAL)) == -1) {
+    if ((just_read = recv(socket->fd, &buf[already_read], remaining, 0)) == -1) {
       return -1;
     } else if (just_read == 0) {
       break;

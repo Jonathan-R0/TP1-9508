@@ -36,7 +36,7 @@ int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key);
  * Postcondiciones: deja el mensaje codificado en el array ingresado. Devuelve
  * -1 en caso de error, 0 de lo contrario
  */
-int rc4_encode(rc4_cipher_t* cipher, unsigned char msg[]);
+int rc4_encode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int msgLen);
 
 /*
  * Decodifica el mensaje ingresado en función el cipher dado.
@@ -44,6 +44,15 @@ int rc4_encode(rc4_cipher_t* cipher, unsigned char msg[]);
  * Postcondiciones: deja el mensaje decodificado en el array ingresado. Devuelve
  * -1 en caso de error, 0 de lo contrario.
  */
-int rc4_decode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int len);
+int rc4_decode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int msgLen);
+
+/*
+ * Destruye el cipher recibido, liberando todos los recursos que este pueda 
+ * estar usando.
+ * Precondiciones: cipher != NULL.
+ * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
+ * de lo contrario.
+ */
+void rc4_destroy(rc4_cipher_t* cipher);
 
 #endif  // COMMON_RC4_H_

@@ -21,7 +21,7 @@ int server_destroy(server_t* self) {
   return 0;
 }
 
-int server_connect(server_t* self, char* port) {
+int server_accept(server_t* self, char* port) {
   if (self == NULL || port == NULL) return -1;
 
   if (socket_bind(&self->mysocket, port) == -1 ||

@@ -52,10 +52,10 @@ unsigned char randChar(rc4_cipher_t* cipher) {
   return cipher->S[(cipher->S[i] + cipher->S[j]) & 255];
 }
 
-int rc4_encode(rc4_cipher_t* cipher, unsigned char msg[]) {
+int rc4_encode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int len) {
   // Es necesario reiniciar el cipher para desencriptar.
   if (cipher == NULL || msg == NULL) return -1;
-  return rc4_decode(cipher, msg, (unsigned int)strlen((char*)msg));
+  return rc4_decode(cipher, msg, len);
 }
 
 int rc4_decode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int len) {
@@ -67,3 +67,5 @@ int rc4_decode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int len) {
 
   return 0;
 }
+
+void rc4_destroy(rc4_cipher_t* cipher) {}

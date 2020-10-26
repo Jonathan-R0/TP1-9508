@@ -23,11 +23,11 @@ void getPortAndIp(arginfo_t* info, int argc, char* argv[]) {
   if (info == NULL || argv == NULL) {
     return;
   } else if (argc == 4) {
-    strncpy(info->port, argv[3], strlen(argv[3]) + 1);
+    strncpy(info->port, argv[3], sizeof(info->port));
     *(info->ip) = '\0';
   } else if (argc == 5) {
-    strncpy(info->ip, argv[3], strlen(argv[3]) + 1);
-    strncpy(info->port, argv[4], strlen(argv[4]) + 1);
+    strncpy(info->ip, argv[3], sizeof(info->ip));
+    strncpy(info->port, argv[4], sizeof(info->port));
   }
 }
 

@@ -22,7 +22,8 @@ int cesar_cipher_init(cesar_cipher_t* cipher, unsigned char* key);
  * Postcondiciones: deja el mensaje cifrado en el mismo array que
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
-int cesar_encode(cesar_cipher_t* cipher, unsigned char msg[]);
+int cesar_encode(cesar_cipher_t* cipher, unsigned char msg[],
+                 unsigned int msgLen);
 
 /*
  * Dado un mensaje se decodifica en función del decremento de caracteres
@@ -42,5 +43,14 @@ int cesar_decode(cesar_cipher_t* cipher, unsigned char msg[],
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
 int cesar_shift_bytes(int shift, unsigned char msg[], unsigned int msgLen);
+
+/*
+ * Destruye el cipher recibido, liberando todos los recursos que este pueda 
+ * estar usando.
+ * Precondiciones: cipher != NULL.
+ * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
+ * de lo contrario.
+ */
+void cesar_destroy(cesar_cipher_t* cipher);
 
 #endif  // COMMON_CESAR_H_

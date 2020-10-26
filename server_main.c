@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
     return 1;
   } else if (server_init(&self) == -1) {
     return 1;
-  } else if (server_connect(&self, arginfo.port) == -1) {
+  } else if (server_accept(&self, arginfo.port) == -1) {
     return 1;
   } else if (decipher_and_recv(&self, arginfo.method,
                                (unsigned char*)arginfo.key) == -1) {

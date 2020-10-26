@@ -32,7 +32,7 @@ int server_destroy(server_t* self);
  * Postcondiciones: deja los sockets inicializados para enviar y recibir datos
  * entre el cliente y servidor. Devuelve -1 en caso de error, 0 de lo contrario.
  */
-int server_connect(server_t* self, char* port);
+int server_accept(server_t* self, char* port);
 
 /*
  * Dado el cliente y mensaje dados, con su largo correspondiente, recibe la 
