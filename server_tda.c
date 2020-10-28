@@ -4,7 +4,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "common_cesar.h"
+#include "common_rc4.h"
 #include "common_socket.h"
+#include "common_vigenere.h"
 #include "server_decipherAndRecv.h"
 
 #define CESAR_CIPHER "cesar"
@@ -78,3 +81,4 @@ int decipher_and_recv(server_t* self, char* method, unsigned char* key) {
   }
   return decipher_and_recv_info(self, key);
 }
+

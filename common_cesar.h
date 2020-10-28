@@ -3,7 +3,7 @@
 #define COMMON_CESAR_H_
 
 typedef struct cesar_cipher {
-  unsigned int shift;
+  int shift;
 } cesar_cipher_t;
 
 /*
@@ -40,7 +40,8 @@ int cesar_decode(void* cipher, unsigned char msg[], unsigned int msgLen);
  * Postcondiciones: deja el mensaje cifrado o descifrado en el mismo array que
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
-int cesar_shift_bytes(int shift, unsigned char msg[], unsigned int msgLen);
+int cesar_shift_bytes(cesar_cipher_t* cesar, unsigned char msg[],
+                      unsigned int msgLen, int incremento);
 
 /*
  * Destruye el cipher recibido, liberando todos los recursos que este pueda

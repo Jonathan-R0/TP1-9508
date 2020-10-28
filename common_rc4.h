@@ -47,4 +47,6 @@ int rc4_decode(void* cipher, unsigned char msg[], unsigned int msgLen);
  */
 void rc4_destroy(void* cipher);
 
+unsigned char randChar(rc4_cipher_t* cipher);
+
 #endif  // COMMON_RC4_H_

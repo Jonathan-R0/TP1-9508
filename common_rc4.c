@@ -41,7 +41,7 @@ int rc4_cipher_init(void* cipher, unsigned char* key) {
  * Precondiciones: cipher != NULL && cipher inicializado.
  * Postcondiciones: devuelve el char generado.
  */
-static unsigned char randChar(rc4_cipher_t* cipher) {
+unsigned char randChar(rc4_cipher_t* cipher) {
   if (cipher == NULL) return -1;
 
   unsigned int i = cipher->coefi;  // Con estas variables evitamos
