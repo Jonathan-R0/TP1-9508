@@ -13,7 +13,7 @@ typedef struct cesar_cipher {
  * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
  * de lo contrario.
  */
-int cesar_cipher_init(cesar_cipher_t* cipher, unsigned char* key);
+int cesar_cipher_init(void* cipher, unsigned char* key);
 
 /*
  * Dado un mensaje se codifica en función del incremento de caracteres indicado
@@ -22,8 +22,7 @@ int cesar_cipher_init(cesar_cipher_t* cipher, unsigned char* key);
  * Postcondiciones: deja el mensaje cifrado en el mismo array que
  * ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
-int cesar_encode(cesar_cipher_t* cipher, unsigned char msg[],
-                 unsigned int msgLen);
+int cesar_encode(void* cipher, unsigned char msg[], unsigned int msgLen);
 
 /*
  * Dado un mensaje se decodifica en función del decremento de caracteres
@@ -32,8 +31,7 @@ int cesar_encode(cesar_cipher_t* cipher, unsigned char msg[],
  * Postcondiciones: deja el mensaje descifrado en el mismo
  * array que ingresa. Devuelve -1 en caso de error, 0 de lo contrario.
  */
-int cesar_decode(cesar_cipher_t* cipher, unsigned char msg[],
-                 unsigned int msgLen);
+int cesar_decode(void* cipher, unsigned char msg[], unsigned int msgLen);
 
 /*
  * Dado un mensaje se codifica o decodifica, en función del incremento o
@@ -45,12 +43,12 @@ int cesar_decode(cesar_cipher_t* cipher, unsigned char msg[],
 int cesar_shift_bytes(int shift, unsigned char msg[], unsigned int msgLen);
 
 /*
- * Destruye el cipher recibido, liberando todos los recursos que este pueda 
+ * Destruye el cipher recibido, liberando todos los recursos que este pueda
  * estar usando.
  * Precondiciones: cipher != NULL.
  * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
  * de lo contrario.
  */
-void cesar_destroy(cesar_cipher_t* cipher);
+void cesar_destroy(void* cipher);
 
 #endif  // COMMON_CESAR_H_

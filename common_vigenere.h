@@ -16,7 +16,7 @@ typedef struct vigenere_cipher {
  * Postcondiciones: deja el cipher recibido inicializado. Se devuelve -1 si
  * ocurre un error, 0 de lo contrario.
  */
-int vigenere_cipher_init(vigenere_cipher_t* cipher, unsigned char* key);
+int vigenere_cipher_init(void* cipher, unsigned char* key);
 
 /*
  * Dado un cipher válido, un mensaje y su largo se codifica o descodifica el
@@ -35,8 +35,7 @@ int vigenere_cipher_shift_bytes(vigenere_cipher_t* cipher, int estoyCifrando,
  * Postcondiciones: se sobreescribirá el mensaje con su versión cifrada. Se
  * devuelve -1 si ocurre un error, 0 de * lo contrario.
  */
-int vigenere_encode(vigenere_cipher_t* cipher, unsigned char msg[],
-                    unsigned int msgLen);
+int vigenere_encode(void* cipher, unsigned char msg[], unsigned int msgLen);
 
 /*
  * Dado un cipher válido, un mensaje y el largo del mismo se decodifica el
@@ -45,16 +44,15 @@ int vigenere_encode(vigenere_cipher_t* cipher, unsigned char msg[],
  * Postcondiciones: se sobreescribirá el mensaje con su versión descifrada.
  * Se devuelve -1 si ocurre un error, 0 de * lo contrario.
  */
-int vigenere_decode(vigenere_cipher_t* cipher, unsigned char msg[],
-                    unsigned int msgLen);
+int vigenere_decode(void* cipher, unsigned char msg[], unsigned int msgLen);
 
 /*
- * Destruye el cipher recibido, liberando todos los recursos que este pueda 
+ * Destruye el cipher recibido, liberando todos los recursos que este pueda
  * estar usando.
  * Precondiciones: cipher != NULL.
  * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
  * de lo contrario.
  */
-void vigenere_destroy(vigenere_cipher_t* cipher);
+void vigenere_destroy(void* cipher);
 
 #endif  // COMMON_VIGENERE_H_

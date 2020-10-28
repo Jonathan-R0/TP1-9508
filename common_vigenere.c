@@ -23,25 +23,23 @@ int vigenere_shift_bytes(vigenere_cipher_t* cipher, int estoyCifrando,
   return 0;
 }
 
-int vigenere_encode(vigenere_cipher_t* cipher, unsigned char msg[],
-                    unsigned int msgLen) {
+int vigenere_encode(void* cipher, unsigned char msg[], unsigned int msgLen) {
   if (cipher == NULL) return -1;
-  return vigenere_shift_bytes(cipher, 1, msg, msgLen);
+  return vigenere_shift_bytes(((vigenere_cipher_t*)cipher), 1, msg, msgLen);
 }
 
-int vigenere_decode(vigenere_cipher_t* cipher, unsigned char msg[],
-                    unsigned int msgLen) {
+int vigenere_decode(void* cipher, unsigned char msg[], unsigned int msgLen) {
   // Es necesario desencriptar con un cipher diferente al que se usó para
   // encriptar.
   if (cipher == NULL || msg == NULL) return -1;
-  return vigenere_shift_bytes(cipher, -1, msg, msgLen);
+  return vigenere_shift_bytes(((vigenere_cipher_t*)cipher), -1, msg, msgLen);
 }
 
-int vigenere_cipher_init(vigenere_cipher_t* cipher, unsigned char* key) {
+int vigenere_cipher_init(void* cipher, unsigned char* key) {
   if (cipher == NULL || key == NULL) return -1;
-  cipher->key = key;
-  cipher->lastKeyIndex = 0;
+  ((vigenere_cipher_t*)cipher)->key = key;
+  ((vigenere_cipher_t*)cipher)->lastKeyIndex = 0;
   return 0;
 }
 
-void vigenere_destroy(vigenere_cipher_t* cipher) {}
+void vigenere_destroy(void* cipher) {}

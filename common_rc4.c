@@ -19,23 +19,29 @@ static void _swap_chars(unsigned char* s, unsigned int coef1,
   s[coef2] = temp;
 }
 
-int rc4_cipher_init(rc4_cipher_t* cipher, unsigned char* key) {
+int rc4_cipher_init(void* cipher, unsigned char* key) {
   if (cipher == NULL || key == NULL) return -1;
-  cipher->coefi = cipher->coefj = 0;
+  ((rc4_cipher_t*)cipher)->coefi = ((rc4_cipher_t*)cipher)->coefj = 0;
   unsigned int len = (unsigned int)strlen((char*)key);
 
   unsigned int i, j;
-  for (i = 0; i < 256; i++) cipher->S[i] = (char)i;
+  for (i = 0; i < 256; i++) ((rc4_cipher_t*)cipher)->S[i] = (char)i;
 
   for (i = j = 0; i < 256; i++) {
-    j = (j + key[i % len] + cipher->S[i]) & 255;
-    _swap_chars(cipher->S, i, j);
+    j = (j + key[i % len] + ((rc4_cipher_t*)cipher)->S[i]) & 255;
+    _swap_chars(((rc4_cipher_t*)cipher)->S, i, j);
   }
 
   return 0;
 }
 
-unsigned char randChar(rc4_cipher_t* cipher) {
+/*
+ * Devuelve un char cuyo valor numérico está generado en función del estado del
+ * cipher que ingrese.
+ * Precondiciones: cipher != NULL && cipher inicializado.
+ * Postcondiciones: devuelve el char generado.
+ */
+static unsigned char randChar(rc4_cipher_t* cipher) {
   if (cipher == NULL) return -1;
 
   unsigned int i = cipher->coefi;  // Con estas variables evitamos
@@ -52,20 +58,20 @@ unsigned char randChar(rc4_cipher_t* cipher) {
   return cipher->S[(cipher->S[i] + cipher->S[j]) & 255];
 }
 
-int rc4_encode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int len) {
+int rc4_encode(void* cipher, unsigned char msg[], unsigned int len) {
   // Es necesario reiniciar el cipher para desencriptar.
   if (cipher == NULL || msg == NULL) return -1;
-  return rc4_decode(cipher, msg, len);
+  return rc4_decode((rc4_cipher_t*)cipher, msg, len);
 }
 
-int rc4_decode(rc4_cipher_t* cipher, unsigned char msg[], unsigned int len) {
+int rc4_decode(void* cipher, unsigned char msg[], unsigned int len) {
   if (cipher == NULL || msg == NULL) return -1;
 
   for (int k = 0; k < len; k++) {
-    msg[k] ^= randChar(cipher);
+    msg[k] ^= randChar((rc4_cipher_t*)cipher);
   }
 
   return 0;
 }
 
-void rc4_destroy(rc4_cipher_t* cipher) {}
+void rc4_destroy(void* cipher) {}
