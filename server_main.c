@@ -3,26 +3,12 @@
 #include <string.h>
 
 #include "common_arginfo.h"
-#include "server_decipherAndRecv.h"
-#include "common_server_tda.h"
 #include "common_socket.h"
+#include "server_decipherAndRecv.h"
+#include "server_tda.h"
 
 #define BUF_SIZE 65
 #define ERR_ARG_NRO "Error, argumento inválido.\n"
-#define CESAR_CIPHER "cesar"
-#define VIGENERE_CIPHER "vigenere"
-#define RC4_CIPHER "rc4"
-
-static int decipher_and_recv(server_t* self, char* method, unsigned char* key) {
-  if (strcmp(CESAR_CIPHER, method) == 0) {
-    return decipher_and_recv_cesar(self, key);
-  } else if (strcmp(VIGENERE_CIPHER, method) == 0) {
-    return decipher_and_recv_vigenere(self, key);
-  } else if (strcmp(RC4_CIPHER, method) == 0) {
-    return decipher_and_recv_rc4(self, key);
-  }
-  return -1;  // No era ninguno de los habilitados.
-}
 
 int main(int argc, char* argv[]) {
   if (argc != 4) {
@@ -33,7 +19,6 @@ int main(int argc, char* argv[]) {
   arginfo_t arginfo;
   server_t self;
 
-  // PONER MENSAJES DE ERROR EN CADA IF.
   if (!arginfo_init(&arginfo, argc, argv)) {
     return 1;
   } else if (server_init(&self) == -1) {

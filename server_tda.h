@@ -2,11 +2,15 @@
 #ifndef COMMON_SERVER_TDA_H_
 #define COMMON_SERVER_TDA_H_
 
+#include "common_cipher.h"
 #include "common_socket.h"
 
 typedef struct server {
   socket_t mysocket;
   socket_t client;
+  int (*decipher_msg)(void*, unsigned char*, unsigned int);
+  void (*destroy)(void*);
+  generico_t descifrado;
 } server_t;
 
 /*
@@ -35,14 +39,15 @@ int server_destroy(server_t* self);
 int server_accept(server_t* self, char* port);
 
 /*
- * Dado el cliente y mensaje dados, con su largo correspondiente, recibe la 
- * cantidad de caracteres del mismo indicados por el socket asociado al 
+ * Dado el cliente y mensaje dados, con su largo correspondiente, recibe la
+ * cantidad de caracteres del mismo indicados por el socket asociado al
  * cliente.
- * Precondiciones: self != NULL && self inicializado y configurado 
+ * Precondiciones: self != NULL && self inicializado y configurado
  * && buf != NULL
- * Postcondiciones: recibe el mensaje enviado por el socket asociado. 
+ * Postcondiciones: recibe el mensaje enviado por el socket asociado.
  * Devuelve -1 en caso de error, la cantidad de chars leidos de lo contrario.
  */
 int server_recv(server_t* self, char buf[], int bufLen);
 
+int decipher_and_recv(server_t* self, char* method, unsigned char* key);
 #endif  // COMMON_SERVER_TDA_H_

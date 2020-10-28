@@ -2,22 +2,14 @@
 #ifndef CLIENT_TDA_H_
 #define CLIENT_TDA_H_
 
-#include "common_cesar.h"
-#include "common_rc4.h"
+#include "common_cipher.h"
 #include "common_socket.h"
-#include "common_vigenere.h"
-
-typedef union cipher {
-  cesar_cipher_t cesar;
-  vigenere_cipher_t vigenere;
-  rc4_cipher_t rc4;
-} cipherGenerico_t;
 
 typedef struct client {
   socket_t mysocket;
   int (*cipher_msg)(void*, unsigned char*, unsigned int);
   void (*destroy)(void*);
-  cipherGenerico_t cifrado;
+  generico_t cifrado;
 } client_t;
 
 /*
