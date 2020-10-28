@@ -18,7 +18,7 @@
 int main(int argc, char* argv[]) {
   if (argc != 5) {
     fprintf(stderr, ERR_ARG_NRO);
-    return 1;
+    return -1;
   }
 
   arginfo_t arginfo;
@@ -26,19 +26,19 @@ int main(int argc, char* argv[]) {
 
   if (!arginfo_init(&arginfo, argc, argv)) {
     fprintf(stderr, ERR_ARG_INIT);
-    return 1;
+    return -1;
   } else if (client_init(&self) == -1) {
     fprintf(stderr, INIT_ERROR);
-    return 1;
+    return -1;
   } else if (client_connect(&self, arginfo.port, arginfo.ip) == -1) {
     fprintf(stderr, CONECT_ERROR);
-    return 1;
+    return -1;
   } else if (cipher_and_send(&self, arginfo.method,
                              (unsigned char*)arginfo.key) == -1) {
-    return 1;
+    return -1;
   } else if (client_destroy(&self) == -1) {
     fprintf(stderr, DESTROY_ERR);
-    return 1;
+    return -1;
   }
   client_destroy(&self);
   return 0;

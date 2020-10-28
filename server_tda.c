@@ -63,6 +63,7 @@ static void _set_method(server_t* self,
 }
 
 int decipher_and_recv(server_t* self, char* method, unsigned char* key) {
+  if (self == NULL || method == NULL || key == NULL) return -1;
   if (strcmp(CESAR_CIPHER, method) == 0) {
     cesar_cipher_t _cesar;
     if (cesar_cipher_init(&_cesar, key) == -1) return -1;

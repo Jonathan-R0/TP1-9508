@@ -46,9 +46,7 @@ int cesar_shift_bytes(cesar_cipher_t* cesar, unsigned char msg[],
 /*
  * Destruye el cipher recibido, liberando todos los recursos que este pueda
  * estar usando.
- * Precondiciones: cipher != NULL.
- * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
- * de lo contrario.
+ * Postcondiciones: libera todos los recursos.
  */
 void cesar_destroy(void* cipher);
 

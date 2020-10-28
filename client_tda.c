@@ -40,7 +40,7 @@ int client_send(client_t* self, char* msg, size_t msgLen) {
   if (self == NULL || msg == NULL) return -1;
 
   int bytes_sent = 0;
-  while (bytes_sent < msgLen) {
+  while (bytes_sent < (int)msgLen) {
     if ((bytes_sent += socket_send(&self->mysocket, msg, msgLen)) == -1) {
       return -1;
     }
@@ -56,6 +56,7 @@ static void _set_method(client_t* self,
 }
 
 int cipher_and_send(client_t* self, char* method, unsigned char* key) {
+  if (self == NULL || method == NULL || key == NULL) return -1;
   if (strcmp(CESAR_CIPHER, method) == 0) {
     cesar_cipher_t _cesar;
     if (cesar_cipher_init(&_cesar, key) == -1) return -1;

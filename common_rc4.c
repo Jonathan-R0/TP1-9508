@@ -35,12 +35,6 @@ int rc4_cipher_init(void* cipher, unsigned char* key) {
   return 0;
 }
 
-/*
- * Devuelve un char cuyo valor numérico está generado en función del estado del
- * cipher que ingrese.
- * Precondiciones: cipher != NULL && cipher inicializado.
- * Postcondiciones: devuelve el char generado.
- */
 unsigned char randChar(rc4_cipher_t* cipher) {
   if (cipher == NULL) return -1;
 

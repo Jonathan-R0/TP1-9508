@@ -49,9 +49,7 @@ int vigenere_decode(void* cipher, unsigned char msg[], unsigned int msgLen);
 /*
  * Destruye el cipher recibido, liberando todos los recursos que este pueda
  * estar usando.
- * Precondiciones: cipher != NULL.
- * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
- * de lo contrario.
+ * Postcondiciones: libera todos los recursos asociados.
  */
 void vigenere_destroy(void* cipher);
 

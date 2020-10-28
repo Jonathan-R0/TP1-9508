@@ -13,7 +13,8 @@ typedef struct client {
 } client_t;
 
 /*
- * Inicializa el tda client y sus correspondiente socket asociado.
+ * Inicializa el tda client, su correspondiente socket asociado y deja en ceros
+ * el espacio correspondiente al cifrado genérico.
  * Precondiciones: self != NULL.
  * Postcondiciones: deja el socket asociado inicializado. Devuelve
  * -1 en caso de error, 0 de lo contrario.
@@ -48,6 +49,16 @@ int client_connect(client_t* self, char* port, char* ip);
  */
 int client_send(client_t* self, char* msg, size_t msgLen);
 
+/*
+ * Dado el cliente, el método a utilizar y la llave elegida, inicializa el 
+ * cipher correspondiente dentro de la estructura cliente y termina llamando
+ * a las otras funciones que desencadenan la lectura, cifrado y enviado de 
+ * la información.
+ * Precondiciones: self != NULL && method != NULL && key != NULL.
+ * Postcondiciones: completa el enviado de la información, llamando al
+ * destructor del cliente al concluir. Devuelve -1 en caso de error, 0 de
+ * lo contrario.
+ */ 
 int cipher_and_send(client_t* self, char* method, unsigned char* key);
 
 #endif  // CLIENT_TDA_H_

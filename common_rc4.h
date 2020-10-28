@@ -41,12 +41,16 @@ int rc4_decode(void* cipher, unsigned char msg[], unsigned int msgLen);
 /*
  * Destruye el cipher recibido, liberando todos los recursos que este pueda
  * estar usando.
- * Precondiciones: cipher != NULL.
- * Postcondiciones: deja el cipher inicializado. Devuelve -1 en caso de error, 0
- * de lo contrario.
+ * Postcondiciones: libera todos los recursos asociados. 
  */
 void rc4_destroy(void* cipher);
 
+/*
+ * Devuelve un char cuyo valor numérico está generado en función del estado del
+ * cipher que ingrese.
+ * Precondiciones: cipher != NULL && cipher inicializado.
+ * Postcondiciones: devuelve el char generado.
+ */
 unsigned char randChar(rc4_cipher_t* cipher);
 
 #endif  // COMMON_RC4_H_

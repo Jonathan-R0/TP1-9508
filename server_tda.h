@@ -49,5 +49,12 @@ int server_accept(server_t* self, char* port);
  */
 int server_recv(server_t* self, char buf[], int bufLen);
 
+/*
+ * En función del servidor, método y clave dados, desencripta el mensaje
+ * que va llegando por red y lo escribe a stdout.
+ * Precondiciones: self != NULL && method != NULL & key != NULL.
+ * Postcondiciones: lee todo lo que ingresa por red y lo escribe a stdout en
+ * función del método y clave. Devuelve -1 en caso de error, 0 de lo contrario.
+ */
 int decipher_and_recv(server_t* self, char* method, unsigned char* key);
 #endif  // COMMON_SERVER_TDA_H_
