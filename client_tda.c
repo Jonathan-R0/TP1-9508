@@ -21,6 +21,7 @@ int client_init(client_t* self) {
 }
 
 int client_destroy(client_t* self) {
+  self->destroy(&self->cifrado);
   if (self == NULL || socket_destroy(&self->mysocket) == -1) return -1;
   return 0;
 }

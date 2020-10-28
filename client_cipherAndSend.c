@@ -1,11 +1,12 @@
 // Copyright [2020]<Jonathan David Rosenblatt>
+#include "client_cipherAndSend.h"
+
 #include <errno.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "client_cipherAndSend.h"
 #include "client_tda.h"
 #include "common_cesar.h"
 #include "common_file_reader.h"
@@ -27,6 +28,5 @@ int cipher_and_send_info(client_t* self, unsigned char* key) {
       return -1;
     }
   }
-  self->destroy(&self->cifrado);
   return 0;
 }
