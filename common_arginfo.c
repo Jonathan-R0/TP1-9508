@@ -20,6 +20,8 @@ static int metodoEsValido(char* metodo) {
 }
 
 void getPortAndIp(arginfo_t* info, int argc, char* argv[]) {
+  memset(info->ip, 0, sizeof(info->ip));
+  memset(info->port, 0, sizeof(info->port));
   if (info == NULL || argv == NULL) {
     return;
   } else if (argc == 4) {
